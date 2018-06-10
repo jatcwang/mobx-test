@@ -1,9 +1,11 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import {runInAction, useStrict} from 'mobx';
+import {runInAction, configure} from 'mobx';
 import App from './components/App'
 import {BaseModel, TimerModel} from './models/Base'
 import {logg} from './myutils'
+
+configure({ enforceActions: 'strict' })
 
 const appState = BaseModel.create({
   name: "jacob",
@@ -22,7 +24,6 @@ function renderApp(ele: any) {
   ReactDOM.render(React.createElement(ele, {appState}, null), document.getElementById('root'));
 }
 
-useStrict(true)
 renderApp(App)
 
 declare let module: any
